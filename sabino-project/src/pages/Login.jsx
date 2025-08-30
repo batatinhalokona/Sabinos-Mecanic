@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import axios from "axios";
-import ErrorPage from "../components/ErrorPage";
+import ErrorPage from "./ErrorPage";
+import "../css/Login.css"
 
 function Login() {
     const [email, setEmail] = useState("");
@@ -30,7 +32,7 @@ function Login() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <h2>Login</h2>
+            <h1>Login</h1>
 
             <input
                 type="email"
