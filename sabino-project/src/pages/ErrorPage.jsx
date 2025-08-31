@@ -1,14 +1,13 @@
-import { useNavigate } from "react-router-dom";
-import Login from "./login";
+import { Link } from "react-router-dom";
+
 
 export default function ErrorPage() {
-    const navigate = useNavigate('/Login');
     return (
         <>
             <h3>Erro ocorrido!</h3>
             <p>Temos um probleminha....</p>
 
-            <button onClick={navigate}> Retornar para a tela de login</button>
+            <Link to={"/"}>  Retornar para a tela de login</Link>
         </>
     )
 }

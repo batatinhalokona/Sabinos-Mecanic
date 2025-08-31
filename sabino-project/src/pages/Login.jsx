@@ -1,34 +1,32 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Routes, Route } from "react-router-dom";
 import axios from "axios";
-import ErrorPage from "./ErrorPage";
 import "../css/Login.css"
 
 function Login() {
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-    const [erro, setErro] = useState(null);
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setErro(null);
 
         try {
             const response = await axios.post("http://localhost:3000/login", {
                 email,
                 senha,
             });
+
+            // Se login for bem-sucedido, redirecionar
+            if (response.status === 200) {
+                navigate("/dashboard"); // ou outra página principal
+            }
+
         } catch (err) {
             console.error(err);
-            setErro("Credenciais inválidas ou erro no servidor.");
+            navigate("/ErrorPage"); // Redireciona para rota de erro
         }
     };
-
-    if (erro) {
-        return <ErrorPage />;
-    }
 
     return (
         <form onSubmit={handleSubmit}>
@@ -56,3 +54,4 @@ function Login() {
 }
 
 export default Login;
+
